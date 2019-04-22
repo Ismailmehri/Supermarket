@@ -21,11 +21,10 @@ public class ProductUtils {
 		if (StringUtils.isEmpty(product.getName())
 				|| product.getName().length() > MAX_PRODUCT_NAME_LENGTH) {
 			throw new ProductException("Incorrect product name");
-		} else if (product.getPrices().isEmpty()) {
+		} else if (product.getPrice() == null) {
 			throw new ProductException("No price founded");
 		} else {
-			for (Price price : product.getPrices())
-				checkPrice(price);
+				checkPrice(product.getPrice());
 		}
 	}
 

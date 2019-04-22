@@ -1,4 +1,4 @@
-package com.supermarkets.services.imlp;
+package com.supermarkets.services.impl;
 
 import java.util.Optional;
 
@@ -9,7 +9,6 @@ import com.supermarkets.exceptions.ProductException;
 import com.supermarkets.model.Product;
 import com.supermarkets.repository.ProductRepository;
 import com.supermarkets.services.ProductService;
-import com.supermarkets.utils.ProductUtils;
 
 /**
  * An implementation of {@link ProductService}
@@ -25,7 +24,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product addProduct(Product product) throws ProductException {
-		ProductUtils.checkProduct(product);
 		return productRepository.save(product);
 	}
 

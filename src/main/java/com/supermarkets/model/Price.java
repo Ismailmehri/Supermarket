@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -20,7 +20,7 @@ import javax.validation.constraints.Min;
  *
  */
 @Entity
-@Table(name = "price")
+@Table(name = "T_PRICE")
 public class Price {
 
     @Id
@@ -31,15 +31,22 @@ public class Price {
     @Column(columnDefinition="Decimal(10,2)")
     private BigDecimal unitPrice;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Min(value = 1)
     private Integer quantity;
     
-    @Column(nullable=false)
+    @Column(nullable = true)
+    @Min(value = 0)
+    private Integer freeProducts;
+    
+    @Column(columnDefinition="Decimal(10,2)")
+    private BigDecimal promoPrice;
+    
+    @Column(nullable=true)
     @Digits(integer=3, fraction=2)
     private BigDecimal discount;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
@@ -121,6 +128,38 @@ public class Price {
 	 */
 	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
+	}
+
+	/**
+	 * Return free product value
+	 * @return free product value
+	 */
+	public Integer getFreeProducts() {
+		return freeProducts;
+	}
+
+	/**
+	 * Set free product value
+	 * @param freeProducts free product value
+	 */
+	public void setFreeProducts(Integer freeProducts) {
+		this.freeProducts = freeProducts;
+	}
+
+	/**
+	 * Return promo price
+	 * @return the promo price
+	 */
+	public BigDecimal getPromoPrice() {
+		return promoPrice;
+	}
+
+	/**
+	 * Set promo price
+	 * @param promoPrice the promo price
+	 */
+	public void setPromoPrice(BigDecimal promoPrice) {
+		this.promoPrice = promoPrice;
 	}
     
 }

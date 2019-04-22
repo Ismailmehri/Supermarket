@@ -36,7 +36,7 @@ public class ProductUtilsTest {
 		Product product = new Product();
 		String name = "Product_Name";
 		product.setName(name);
-		product.setPrices(new ArrayList<>());
+		product.setPrice(null);
 		
 		// when
 		ProductUtils.checkProduct(product);
